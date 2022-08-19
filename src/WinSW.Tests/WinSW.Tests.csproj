@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net471;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -40,11 +40,11 @@
   <Target Name="Copy" BeforeTargets="AfterBuild">
 
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
-      <_FilesToCopy Include="$(ArtifactsBinDir)WinSW\$(Configuration)\net6.0-windows\WinSW.runtimeconfig*.json" />
+      <_FilesToCopy Include="$(ArtifactsBinDir)WinSW\$(Configuration)\$(TargetFramework)\WinSW.runtimeconfig*.json" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' != 'net6.0-windows'">
-      <_FilesToCopy Include="$(ArtifactsBinDir)WinSW\$(Configuration)\net461\System.ValueTuple.dll" />
+      <_FilesToCopy Include="$(ArtifactsBinDir)WinSW\$(Configuration)\$(TargetFramework)\System.ValueTuple.dll" />
     </ItemGroup>
 
     <Copy SourceFiles="@(_FilesToCopy)" DestinationFolder="$(OutputPath)" />
